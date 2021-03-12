@@ -15,3 +15,10 @@ require("channels")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+import { loadDynamicNavbarText } from '../components/navbar';
+
+document.addEventListener('turbolinks:load', () => {
+  // Call your JS functions here
+  // [...]
+  loadDynamicNavbarText();
+});

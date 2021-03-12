@@ -1,0 +1,34 @@
+
+
+<div class="container">
+  <div class = "kolom-pencarian">
+
+     <%= simple_form_for :search, method: :get, html: { class: "form-inline", style: "justify-content: center" } do |f| %>
+      <div class="pencarian-item">
+        <input class="form-pencarian-item" type="text" placeholder="  Cari barang...." name="query" id="companySearch" />
+        <button type="submit" class="tombol-pencarian-item tombol">
+         Search
+        </button>
+      </div>
+    <% end %>
+  </div>
+  <div class = "grid-container <%= "bypass-grid" if @items.length() == 1%>">
+    <% @items.each do  |item|%>
+      <div class = "kartu">
+          <div class = kartu-barang-foto>
+            <%= cl_image_tag(item.foto_barang.key,:width=>150, :height=>150, :crop=>"thumb") %>
+          </div>
+          <div class = 'kartu-barang-deskripsi'>
+            <div class = "kartu-barang-deskripsi-kiri">
+              <p><%=item.nama_barang%></p>
+              <h5>Rp <%=format_price(item.harga_satuan)%></h5>
+            </div>
+            <div class = "kartu-barang-deskripsi-kanan">        
+              <p>Stok : <%=item.qty%></p>
+              <p>SKU : <%=item.no_sku%></p>
+            </div>
+          </div>
+      </div>
+    <% end  %>
+  </div>
+</div>

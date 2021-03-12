@@ -1,0 +1,36 @@
+
+
+.card-greeting-button {
+  width: 150px;
+}
+
+.card-greeting-gallery {
+  display: flex;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 80px;
+  margin-top: 8px;
+  background-color: darkcyan;
+  border-radius: 10px;
+  justify-content: space-around;
+  a {
+    display: flex;
+    align-self: center;
+    margin:2px
+  }
+}
+
+
+.card-greeting {
+  margin: auto;
+  padding-left: 5%;
+  padding-right: 5%;
+  padding-top: 5%;
+  width: 60vw;
+  height: 50vh;
+  background-color: greenyellow !important;
+}
+
+.greeting-words {
+  color: brown
+}

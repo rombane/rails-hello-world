@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nama_barang: MyString
+  no_sku: MyString
+  qty: 1
+  harga_satuan: 1
+
+two:
+  nama_barang: MyString
+  no_sku: MyString
+  qty: 1
+  harga_satuan: 1

@@ -5,62 +5,34 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+GALLERY_LIST = ['charlie_lademp', 'beta_ygc2jh', 'alpha_mhwcr2', 'echo_ubkclo', 'delta_kxtz4g']
 
-
-
-
-
-
-contributor1 =  Contributor.new(username: 'alex10', email: 'alex10@nk.com', password: '123456', bio: 'imgoodman lmao hahahaha')
-contributor1.save
-
-region1 =  Region.new(name: 'Southeast Asia', photomap: '14.00 12.00 LT UZZ')
-region1.save
-
-greet1 = Greeting.new(contributor: contributor1, region: region1, word: 'Halo', story: "Indonesian phone greeting", audio: "audio-sample.com/halo")
-greet1.save
-
-rand(1..[2, 3, 4].sample).times do
-  photo = Photo.new(greeting: greet1, description: 'alpha beta charlie')
-  photo.save
+PRODUCT_PIC = ['alpha', 'beta', 'charlie', 'delta', 'echo']
+8.times do
+  puts 'generating items'
+  item = Item.create(nama_barang:"#{Faker::Computer.platform} #{Faker::Hacker.ingverb} #{Faker::Hacker.noun}", no_sku: (rand(1000..4999) + rand(1000..4999)).to_s , qty: 15, harga_satuan: rand(10..45)*500)
+  
+  file = open("https://res.cloudinary.com/rombane/image/upload/v1615458011/hello_world_photo/#{GALLERY_LIST.sample}.jpg")
+  item.foto_barang.attach(io: file, filename: "itempic_#{item.id}.jpg")
 end
+ 
+rand(4..10).times do 
+  puts 'generating users'
+  user = User.create(name: Faker::Name.name , email: Faker::Internet.email, password: 'password')
 
-greet2 = Greeting.new(contributor: contributor1, region: region1, word: 'Selamat', story: "Indonesian greeting prefix", audio: "audio-sample.com/selamat")
-greet2.save
-
-rand(1..[2, 3].sample).times do
-  photo = Photo.new(greeting: greet2, description: 'alpha beta omega six haha')
-  photo.save
-end
-
-contributor2 = Contributor.new(username: 'nilsson_du', email: 'koshi@nk.com', password: '123456', bio: "y'all funny hahahaha")
-contributor2.save
-
-region2 =  Region.new(name: 'Scandinavia', photomap: '/23131234axcv')
-region2.save
-
-greet3 = Greeting.new(contributor: contributor2, region: region2, word: 'Hej sa', story: "Swedish intimate greeting", audio: "audio-sample.com/hejsa")
-greet3.save
-
-rand(1..[2, 3].sample).times do
-  photo = Photo.new(greeting: greet3, description: 'det ar sjugo-fem lmao')
-  photo.save
-end
-
-=begin
-greet = Greeting.new(contributor: contributor1, word: 'Halo', story: "Indonesian phone greeting", audio: "audio-sample.com/halo")
-greet.save
+  puts 'generating purchase'
+  
+  purchase = Purchase.create(user: user)
 
 
-greet = Greeting.new(word: 'Hej', story: "Swedish basic greeting", audio: "audio-sample.com/halo")
-greet.save
+  purchased_items = Item.all.sample(rand(2..5))
+  puts purchased_items
+  puts 'generating batch'
+  purchased_items.each do |item|
+    Batch.create!(purchase: purchase, item: item, batch_name: item.nama_barang, batch_qty: rand(1..3))
+  end
 
-greet = Greeting.new(word: 'Hej Sa', story: "Swedish more intimate greeting", audio: "audio-sample.com/halo")
-greet.save
+  
+end 
 
-greet = Greeting.new(word: 'Wilujeng', story: "Sundanese greeting prefix", audio: "audio-sample.com/halo")
-greet.save
-
-greet = Greeting.new(word: 'Matur Nuwun', story: "Javanese way of saying thank you", audio: "audio-sample.com/halo")
-greet.save
-=end

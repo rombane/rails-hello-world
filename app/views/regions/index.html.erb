@@ -1,0 +1,7 @@
+<h1>Regions</h1>
+
+<% @regions.each do |region| %>
+  <h3><%= link_to region.name, region_path(region) %></h3>
+  <p><%= region.photomap%></p>
+  <br>
+<% end  %>

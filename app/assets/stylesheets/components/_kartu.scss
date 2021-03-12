@@ -1,0 +1,41 @@
+.kartu {
+  background-color: mediumaquamarine;
+  border-radius: 20px;
+  width: 80%;
+  height: 250px;
+
+  margin: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: row;
+
+  overflow: hidden;
+  height: 120px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+  align-items: center;
+}
+
+.kartu-barang-deskripsi {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 3px;
+  margin-right: 3px;
+  width: 90%;
+}
+
+
+.kartu-barang-foto img{
+  height: 100%;
+  width: 120px;
+}
+
+.kartu-barang-deskripsi-kiri {
+} 
+
+.kartu-barang-deskripsi-kanan {
+  margin-right: 10px;
+  padding-left: 10px;
+  border-left: 5px solid  rgba(32, 171, 79, .5);
+}
+

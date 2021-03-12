@@ -1,0 +1,8 @@
+<h3>Add a greeting!</h3>
+
+<%= simple_form_for(@greeting) do |f| %>
+    <%= f.input :word, as: :string %>
+    <%= f.input :story, as: :text %>
+    <%= f.input :audio, as: :string %>
+    <%= f.button :submit, class: "btn-success" %>
+<% end %>

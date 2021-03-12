@@ -3,17 +3,23 @@ class GreetingsController < ApplicationController
 
   def index
     @greetings = Greeting.all
+    @photos = Photo.all
   end
 
   def show
+    @photos_by_greeting = Photo.all.where(greeting: @greeting)
     #authorize @worker_profile
     #@user = current_user
     #@booking = Booking.new
     #@working_hash = @worker_profile.calculate_availabilities
   end
 
+  def new
+    @greeting = Greeting.new
+  end
+
   def create
-    @greeting = Greeting.new(greeting_params)
+    @greeting = Greeting.new(params.require(:greeting).permit(:contributor, :word, :story, :audio))
     @greeting.save
     redirect_to greeting_path(@greeting)
   end
@@ -24,9 +30,6 @@ class GreetingsController < ApplicationController
   end
 
   def edit
-    #authorize @worker_profile
-    #@worker_profile_tag = WorkerProfileTag.new
-    #@availability = Availability.new
   end
 
   def destroy

@@ -1,0 +1,57 @@
+.banner-user {
+  background-color: honeydew !important;
+  background-size: cover;
+  background-position: center;
+  padding: 20px;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  border-radius: 20px;
+}
+
+.banner-user h1 {
+  margin: 0;
+  color: white;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.2);
+  font-size: 32px;
+  font-weight: bold;
+}
+
+.banner p {
+  font-size: 20px;
+  color: white;
+  opacity: .7;
+  
+}
+
+.devise-button{
+  background-color: rgb(24, 193, 199) !important;
+  color: darkslategray;
+  border-radius: 5px;
+  height: 50px !important;
+  margin: 10px
+}
+
+.devise-button:hover {
+  background-color: rgb(3, 242, 250) !important;
+}
+
+.devise-button-down {
+  display: flex;
+  justify-content: center;
+  border-top: 5px solid lightblue;
+  a {
+    margin: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .devise-button {
+    background-color: transparent !important;
+  }
+}
+
+h2 {
+  margin: auto;
+  text-align: center;
+}

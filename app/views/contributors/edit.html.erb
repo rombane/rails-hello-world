@@ -1,0 +1,8 @@
+<h1>Contributor Edit</h1>
+
+<%= simple_form_for(@contributor, remote: true) do |f| %>
+    <%= f.input :username, as: :string %>
+    <%= f.input :bio, as: :text %>
+    <%= f.input :profpic, as: :file %>
+    <%= f.button :submit, class: "btn-success" %>
+<% end %>

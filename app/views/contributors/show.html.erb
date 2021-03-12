@@ -1,0 +1,23 @@
+<h1>CONTRIBUTOR PROFILE</h1>
+<%= link_to 'DELETE', contributor_path(@contributor), method: :delete, data: {confirm: "Are you sure?"}%>
+<%= link_to 'EDIT', edit_contributor_path(@contributor)%>
+
+<h3><%= @contributor.username  %></h3>
+          <% if @contributor.profpic.attached? %>
+            <img class="avatar-large" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= cl_image_path @contributor.profpic.key , height: 300, width: 400, crop: :fill %>" />
+          <% else %>
+            <%= cl_image_tag("v1615248488/hello_world_contributor/smiley_zlrvcz.jpg", height: 300, width: 400, crop: :fill, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+          <% end %>
+<br>
+<p> Bio: <%= @contributor.bio  %></p>
+<br>
+<p> 
+    <ul>
+      <% @greetings_slice.each do |greet| %>
+        <li><%= link_to greet.word, greeting_path(greet)%> (<%= link_to greet.region.name, region_path(greet.region) %>)</li>
+      <% end%>
+    </ul>
+
+  <br>
+  <%= link_to 'See All Contributors', contributors_path %>
+</p>

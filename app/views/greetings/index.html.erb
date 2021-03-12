@@ -1,8 +1,31 @@
-<h1>Valkomen!</h1>
-<br>
-<% @greetings.each do |greet|%>
-  <h4><%= greet.word %></h4>
-  <p><%= greet.story %></p>
-  <%= link_to "SHOW", greeting_path(greet.id) %>
-  <br>
-<% end  %>
+<div class="container">
+    
+    <br>
+    
+    <% @greetings.each do |greet|%>
+      <div class='card card-greeting'>
+        <div class = 'greeting-words'>
+          <h4><%= greet.word %></h4>
+          <p><%= greet.story %></p>
+        </div>
+        <%photos_slice = @photos.where(greeting: greet)  %>
+        <a href=<%= greeting_path(greet.id) %> class="btn btn-success card-greeting-button">See Details</a>
+        <div class = 'card-greeting-gallery'>
+          <% photos_slice.each_with_index do |photo, idx| %>
+              <a href= <%= photo_path(photo) %> data-toggle="tooltip" title='<%= photo.description %>'>
+                <% if photo.gallery_photo.attached? %>
+                  <img href= <%= photo_path(photo.id) %> class="avatar-large" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= cl_image_path photo.gallery_photo.key , height: 45, width: 60, crop: :fill %>" />
+                <% else %>
+                  <%= cl_image_tag("v1615258655/hello_world_photo/question_k1lulh.jpg", height: 45, width: 60, crop: :fill, class: "avatar-large dropdown-toggle", id: "navbarDropdown", data: { toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false) %>
+                <% end %>
+              </a>
+            <%break if idx > 4  %>
+
+          <%end  %>
+        </div>
+      </div>
+      <br>
+    <% end  %>
+
+</div>
+
