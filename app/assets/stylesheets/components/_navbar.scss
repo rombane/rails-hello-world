@@ -1,6 +1,6 @@
 .navbar-klb {
   justify-content: space-between;
-  background: rgb(24, 193, 199);
+  background-color: #61a745;
   display: flex !important;
   justify-content: space-between !important;
 
@@ -32,15 +32,16 @@
  padding-left: 10px;
  padding-right: 10px;
  font-size: 18px;
- color: #0d376d ;
+ /* color: #0d376d ; */
+ color: white;
  margin: 2px;
 }
 
 
 .navbar-menu-link:hover {
   text-decoration:none;
-  background-color: whitesmoke;
-  border-radius: 6px;
+/*   background-color: whitesmoke;
+ */  border-radius: 6px;
 }
 
 .navbar-menu-border {
@@ -50,7 +51,7 @@ margin: 3px;
 }
 #navbar-typed-text {
   margin-left: 20px;
-  color: #0d376d;
+  color: white;
   font-size: 20px;
 }
 
@@ -89,4 +90,8 @@ margin: 3px;
 
 #dropdown-multi{
   padding-top: 7px;
+}
+
+.navbar-menu-link-name {
+  font-weight: bolder ;
 }

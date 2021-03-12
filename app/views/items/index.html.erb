@@ -5,9 +5,9 @@
 
      <%= simple_form_for :search, method: :get, html: { class: "form-inline", style: "justify-content: center" } do |f| %>
       <div class="pencarian-item">
-        <input class="form-pencarian-item" type="text" placeholder="  Cari barang...." name="query" id="companySearch" />
+        <input class="form-pencarian-item" type="text" placeholder="  Ketik nama barang...." name="query" />
         <button type="submit" class="tombol-pencarian-item tombol">
-         Search
+         Cari
         </button>
       </div>
     <% end %>
@@ -22,6 +22,17 @@
             <div class = "kartu-barang-deskripsi-kiri">
               <p><%=item.nama_barang%></p>
               <h5>Rp <%=format_price(item.harga_satuan)%></h5>
+              <div class= tombol-kartu>
+                <div class= tombol-kartu-satu>
+                  <input type="number" id="quantity" name="quantity" min="0" max=<%= item.qty%>>
+                </div>
+                <div class= tombol-kartu-dua>
+
+                </div>
+                <div class= tombol-kartu-tiga>
+
+                </div>  
+              </div>
             </div>
             <div class = "kartu-barang-deskripsi-kanan">        
               <p>Stok : <%=item.qty%></p>

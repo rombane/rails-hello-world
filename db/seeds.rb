@@ -8,18 +8,18 @@
 require 'faker'
 GALLERY_LIST = ['charlie_lademp', 'beta_ygc2jh', 'alpha_mhwcr2', 'echo_ubkclo', 'delta_kxtz4g']
 
-PRODUCT_PIC = ['alpha', 'beta', 'charlie', 'delta', 'echo']
-8.times do
+PRODUCT_PIC = ['klb1_6_lym4qk', 'klb1_3_verqlw', 'klb1_5_pslzz9', 'klb1_4_hpjj6s', 'klb1_2_le6iww','klb1_1_bdruwd','klb1_13_aws6gv','klb1_14_puctyf','klb1_11_wu1hn6','klb1_8_x38c3x','klb1_7_o2ckni','klb1_10_agkrla','klb1_12_bifsem','klb1_9_hlkb0q']
+25.times do
   puts 'generating items'
-  item = Item.create(nama_barang:"#{Faker::Computer.platform} #{Faker::Hacker.ingverb} #{Faker::Hacker.noun}", no_sku: (rand(1000..4999) + rand(1000..4999)).to_s , qty: 15, harga_satuan: rand(10..45)*500)
+  item = Item.create(nama_barang:"#{Faker::Computer.platform} #{Faker::Hacker.ingverb} #{Faker::Hacker.noun}", no_sku: (rand(1000..4999) + rand(1000..4999)).to_s , qty: rand(3..50), harga_satuan: rand(10..45)*500)
   
-  file = open("https://res.cloudinary.com/rombane/image/upload/v1615458011/hello_world_photo/#{GALLERY_LIST.sample}.jpg")
+  file = open("https://res.cloudinary.com/rombane/image/upload/v1615521216/klb_item/#{PRODUCT_PIC.sample}.jpg")
   item.foto_barang.attach(io: file, filename: "itempic_#{item.id}.jpg")
 end
  
 rand(4..10).times do 
   puts 'generating users'
-  user = User.create(name: Faker::Name.name , email: Faker::Internet.email, password: 'password')
+  user = User.create(name: Faker::Name.name, phone_number: (rand(10000..49999) + rand(10000..49999)).to_s, email: Faker::Internet.email, password: 'password')
 
   puts 'generating purchase'
   
@@ -32,7 +32,6 @@ rand(4..10).times do
   purchased_items.each do |item|
     Batch.create!(purchase: purchase, item: item, batch_name: item.nama_barang, batch_qty: rand(1..3))
   end
-
-  
 end 
 
+puts 'FINISHED'

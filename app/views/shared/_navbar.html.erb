@@ -1,9 +1,9 @@
 <div class="navbar-expand-sm navbar-klb">
 
-  <a class="navbar-left" href="#">
-    <img src="https://www.coolgenerator.com/Data/Textdesign/202103/48bfb1e79d28d9b391620191a62cd222.png" />
+  <div class="navbar-left">
+    <%# <img src="https://www.coolgenerator.com/Data/Textdesign/202103/48bfb1e79d28d9b391620191a62cd222.png" /> %>
     <span id="navbar-typed-text"></span>
-  </a>
+  </div>
 
 
 
@@ -33,6 +33,13 @@
         
       <li class="nav-item">
         <img class="avatar avatar-navbar" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://t3.ftcdn.net/jpg/01/18/01/98/360_F_118019822_6CKXP6rXmVhDOzbXZlLqEM2ya4HhYzSV.jpg" />
+      </li>
+      <li class="navbar-menu">
+        <div class="dropdown">
+        <%if user_signed_in?  %>
+          <a class ="navbar-menu-link navbar-menu-link-name"><%= current_user.name.split(" ")[0] %></a>
+        <%end  %>
+        </div>
       </li>
     </ul>
   </div>
