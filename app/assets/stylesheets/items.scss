@@ -4,7 +4,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto;
   justify-items: center;
 }
 
@@ -19,6 +19,6 @@
 .bypass-grid {
   display: flex !important;
   .kartu {
-    width: 500px;
+    width: 00px;
   }
 }

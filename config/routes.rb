@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   resources :purchases, only: [:update, :edit, :index, :show, :destroy]
   resources :items, only: [:update, :edit, :index, :show]
-  resources :batches, only: [:create, :update, :edit]
+  resources :batches, only: [:create, :update, :index, :edit, :destroy]
 
   #resources :search_items, only: [:index]
   

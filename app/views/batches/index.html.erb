@@ -1,0 +1,24 @@
+<div class="container">
+  
+  <div class = 'grid-container'>
+    <% @all.each do |batch|  %>
+    <div class = "kartu">
+    <div class = kartu-barang-foto>
+      <%= cl_image_tag(batch.item.foto_barang.key,:width=>150, :height=>150, :crop=>"thumb") %>
+    </div>
+    <div class = kartu-barang-deskripsi>
+    <div class = "kartu-barang-deskripsi-kiri">
+      <h5><%=batch.item.nama_barang%></h5>
+      <p>Kuantitas: <%=batch.batch_qty%> </p>
+      <p>Harga Satuan: Rp <%=format_price(batch.item.harga_satuan) %> </p>
+    </div>
+    <div class = "kartu-barang-deskripsi-kanan subtotal-batch">
+      <h4>Subtotal: Rp <%=format_price(batch.item.harga_satuan * batch.batch_qty) %></h4>
+    </div>
+
+
+    </div>
+    </div>
+    <%end%>
+  </div>
+</div>

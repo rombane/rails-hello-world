@@ -3,6 +3,7 @@
 <div class="container">
   <div class = "kolom-pencarian">
 
+
      <%= simple_form_for :search, method: :get, html: { class: "form-inline", style: "justify-content: center" } do |f| %>
       <div class="pencarian-item">
         <input class="form-pencarian-item" type="text" placeholder="  Ketik nama barang...." name="query" />
@@ -13,6 +14,7 @@
     <% end %>
   </div>
   <div class = "grid-container <%= "bypass-grid" if @items.length() == 1%>">
+
     <% @items.each do  |item|%>
       <div class = "kartu">
           <div class = kartu-barang-foto>
@@ -22,21 +24,28 @@
             <div class = "kartu-barang-deskripsi-kiri">
               <p><%=item.nama_barang%></p>
               <h5>Rp <%=format_price(item.harga_satuan)%></h5>
+              <% if user_signed_in?  %>
               <div class= tombol-kartu>
                 <div class= tombol-kartu-satu>
-                  <input type="number" id="quantity" name="quantity" min="0" max=<%= item.qty%>>
-                </div>
-                <div class= tombol-kartu-dua>
 
-                </div>
-                <div class= tombol-kartu-tiga>
+                  <%= simple_form_for(@batch, remote: true) do |f| %>
+                    <%= f.input :batch_qty, label: 'Kuantitas', input_html: { min: 0, max: item.qty } %>
+                    <%= f.hidden_field :purchase_id, value: @purchase.id %>
+                    <%= f.hidden_field :item_id, value: item.id %>
+                    <%= f.button :submit, 'Update', class: "btn-success tombol-beli" %>
+                  <% end %>
 
-                </div>  
+                  
+                </div>
               </div>
+              <%end  %>
             </div>
-            <div class = "kartu-barang-deskripsi-kanan">        
-              <p>Stok : <%=item.qty%></p>
-              <p>SKU : <%=item.no_sku%></p>
+            <div class = "kartu-barang-deskripsi-kanan"> 
+              <div class = "kartu-barang-deskripsi-kanan-atas">      
+                <p>Stok : <%=item.qty%></p>
+                <p>SKU : <%=item.no_sku%></p>
+              </div>
+            <%=link_to "Hapus", batch_path(Batch.where(purchase: @purchase, item: item)), method: :delete,  data: { confirm: "Are you sure you to remove this item from your cart ?" }, class: 'btn btn-danger'   %>
             </div>
           </div>
       </div>

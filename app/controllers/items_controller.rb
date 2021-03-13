@@ -5,12 +5,25 @@ class ItemsController < ApplicationController
   helper_method :format_price
   
   def index
-    #@items = Item.all
+
     @items = policy_scope(Item).order(created_at: :desc)
     if params[:query].present?
       @items = Item.search_items(params[:query])
     end
+    @batch = Batch.new
+    
+    if current_user != nil
+      if Purchase.all.where(user: current_user) != nil 
+        @purchase = Purchase.create(user_id: current_user.id)
+        puts 'A'
+      else  
+        @purchase = Purchase.all.where(user: current_user).last
+        puts 'B'
+      end 
+    end  
+     
   end
+
 
   def show
     @user = current_user
