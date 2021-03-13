@@ -18,7 +18,11 @@
     <% @items.each do  |item|%>
       <div class = "kartu">
           <div class = kartu-barang-foto>
-            <%= cl_image_tag(item.foto_barang.key,:width=>150, :height=>150, :crop=>"thumb") %>
+            <% if !item.foto_barang.attached?  %>
+              <img class="avatar avatar-navbar" id="navbarDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://fakeimg.pl/440x320/282828/eae0d0/?retina=1" />
+            <% else  %>
+              <%= cl_image_tag(item.foto_barang.key,:width=>150, :height=>150, :crop=>"thumb") %>
+            <% end  %>
           </div>
           <div class = 'kartu-barang-deskripsi'>
             <div class = "kartu-barang-deskripsi-kiri">
