@@ -45,7 +45,9 @@
                 <p>Stok : <%=item.qty%></p>
                 <p>SKU : <%=item.no_sku%></p>
               </div>
-            <%=link_to "Hapus", batch_path(Batch.where(purchase: @purchase, item: item)), method: :delete,  data: { confirm: "Are you sure you to remove this item from your cart ?" }, class: 'btn btn-danger'   %>
+              <% if user_signed_in?  %>
+                <%=link_to "Hapus", batch_path(Batch.where(purchase: @purchase, item: item)), method: :delete,  data: { confirm: "Are you sure you to remove this item from your cart ?" }, class: 'btn btn-danger'   %>
+              <% end  %>  
             </div>
           </div>
       </div>
