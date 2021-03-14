@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_12_050921) do
+ActiveRecord::Schema.define(version: 2021_03_14_054438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,8 +43,10 @@ ActiveRecord::Schema.define(version: 2021_03_12_050921) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "purchase_id", null: false
     t.integer "item_id", null: false
+    t.bigint "user_id", null: false
     t.index ["item_id"], name: "index_batches_on_item_id"
     t.index ["purchase_id"], name: "index_batches_on_purchase_id"
+    t.index ["user_id"], name: "index_batches_on_user_id"
   end
 
   create_table "contributors", force: :cascade do |t|
@@ -115,6 +117,7 @@ ActiveRecord::Schema.define(version: 2021_03_12_050921) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "batches", "items"
   add_foreign_key "batches", "purchases"
+  add_foreign_key "batches", "users"
   add_foreign_key "greetings", "contributors"
   add_foreign_key "purchases", "users"
 end

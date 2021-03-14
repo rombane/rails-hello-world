@@ -36,6 +36,7 @@
                     <%= f.input :batch_qty, label: 'Kuantitas', input_html: { min: 0, max: item.qty } %>
                     <%= f.hidden_field :purchase_id, value: @purchase.id %>
                     <%= f.hidden_field :item_id, value: item.id %>
+                    <%= f.hidden_field :user_id, value: @purchase.user.id %>
                     <%= f.button :submit, 'Update', class: "btn-success tombol-beli" %>
                   <% end %>
 
@@ -49,8 +50,12 @@
                 <p>Stok : <%=item.qty%></p>
                 <p>SKU : <%=item.no_sku%></p>
               </div>
-              <% if user_signed_in?  %>
-                <%=link_to "Hapus", batch_path(Batch.where(purchase: @purchase, item: item)), method: :delete,  data: { confirm: "Are you sure you to remove this item from your cart ?" }, class: 'btn btn-danger'   %>
+              <% if user_signed_in? %>
+                <%if ( Batch.find_by( purchase: @purchase, item: item, user_id: current_user.id) != nil) %>
+                  <%=link_to "Hapus", batch_path(Batch.find_by( purchase: @purchase, item: item, user_id: current_user.id)), method: :delete,  data: { confirm: "Are you sure you to remove this item from your cart ?" }, class: 'btn btn-danger'   %>
+                <%else  %>
+                  <%= link_to "Hapus", "",  class: 'btn btn-danger' %>
+                <%end  %>
               <% end  %>  
             </div>
           </div>

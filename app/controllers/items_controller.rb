@@ -13,12 +13,12 @@ class ItemsController < ApplicationController
     @batch = Batch.new
     
     if current_user != nil
-      if Purchase.all.where(user: current_user) != nil 
-        @purchase = Purchase.create(user_id: current_user.id)
-        puts 'A'
-      else  
+      if Purchase.all.where(user: current_user).length > 0 
         @purchase = Purchase.all.where(user: current_user).last
-        puts 'B'
+        @status = 'A'
+      else
+        @purchase = Purchase.create(user_id: current_user.id)
+        @status =  'B'
       end 
     end  
      

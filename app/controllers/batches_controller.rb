@@ -9,7 +9,7 @@ class BatchesController < ApplicationController
     @batches = policy_scope(Batch).order(created_at: :desc)
     @batch = Batch.new
     @purchase = Purchase.all.where(user: current_user)
-    @all = Batch.all.where(purchase: @purchase)
+    @all = Batch.all.where(purchase: @purchase).order(created_at: :desc)
     
   end
 
@@ -18,7 +18,7 @@ class BatchesController < ApplicationController
   end
 
   def create
-    @batch = Batch.new(params.require(:batch).permit(:batch_qty, :purchase_id, :item_id))
+    @batch = Batch.new(params.require(:batch).permit(:batch_qty, :purchase_id, :item_id, :user_id))
     @batch.save
     #redirect_to greeting_path(@greeting)
   end

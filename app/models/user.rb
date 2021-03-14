@@ -4,6 +4,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable, authentication_keys: [:login]
 
+  has_many :purchases
+
+  has_many :batches, through: :purchases
+
+  validates :phone_number, format: { with: /(^\+62|62|^08)(\d{3,4}-?){2}\d{3,4}/i, message: "Enter Indonesian phone number"}
 
   def login=(login)
     @login = login

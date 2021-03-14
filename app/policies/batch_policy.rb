@@ -9,7 +9,7 @@ class BatchPolicy < ApplicationPolicy
   #end
 
   def destroy?
-    record.user == user
+    record.purchase.user == user
   end
 
   def index?

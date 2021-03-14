@@ -22,15 +22,12 @@ rand(4..10).times do
   user = User.create(name: Faker::Name.name, phone_number: (rand(10000..49999) + rand(10000..49999)).to_s, email: Faker::Internet.email, password: 'password')
 
   puts 'generating purchase'
-  
   purchase = Purchase.create(user: user)
-
-
   purchased_items = Item.all.sample(rand(2..5))
   puts purchased_items
   puts 'generating batch'
   purchased_items.each do |item|
-    Batch.create!(purchase: purchase, item: item, batch_name: item.nama_barang, batch_qty: rand(1..3))
+    Batch.create!(user_id: user.id, purchase: purchase, item: item, batch_name: item.nama_barang, batch_qty: rand(1..3))
   end
 end 
 
